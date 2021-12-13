@@ -1,0 +1,92 @@
+package calculadora_nominas;
+
+import pedir.*;
+
+/**
+ *
+ * @author Joel Andreu 1CFS J
+ */
+public class Trabajador {
+    
+    //Datos del trabajador
+    private String nif;         //NIF
+    private int numss;          //Numero de afiliación de la seguridad social
+    private String Gprof;       //Grupo Profesional
+    private String Gcoti;       //Grupo cotización
+    private String fantig;      //Fecha de antigüedad
+
+    public Trabajador(){}
+    
+    public String getNif() {
+        return nif;
+    }
+
+    public long getNumss() {
+        return numss;
+    }
+
+    public String getGprof() {
+        return Gprof;
+    }
+
+    public String getGcoti() {
+        return Gcoti;
+    }
+
+    public String getFantig() {
+        return fantig;
+    }
+    
+    public void pedirDatos(){
+    
+        int dia, mes, anyo, dni;
+        boolean fecha;
+        char letranif;
+        
+        /*
+        * Pedir.rangoInt es un método que pide por teclado un número entre dos
+        * que se especifiquen al llamar al método. También es necesario pasarle
+        * un mensaje que imprimirá a la hora de pedir el dato.
+        */
+        
+        dni = Pedir.rangoInt("Introduce tu DNI (sin letra): ", 10000000, 99999999);
+        SLeer1.limpiar();
+        letranif = Pedir.soloLetra("Introduce la letra de tu DNI: ");
+        
+        nif = dni + " " + letranif;
+        
+        /*
+        * Pedir.posiDesdeNumInt es un método que pide por teclado un número int mayor
+        * que el número especificado al llamar el método. También es necesario pasarle
+        * un mensaje que imprimirá a la hora de pedir el dato.
+        */
+        
+        numss = Pedir.posiDesdeNumInt("Introduce tu Nº de afiliación de la SS (9 dígitos): ", 100000000);
+        SLeer1.limpiar();
+        Gprof = SLeer1.datoString("Introduce tu grupo profesional(Ej: 'Subalternos'): ");
+        Gcoti = SLeer1.datoString("Introduce tu grupo cotización: ");
+                
+        mes = Pedir.rangoInt("Introduce el mes de incorporación: ", 1, 12);
+        
+        
+            
+        if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 30);
+            
+        }else if(mes == 2){
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 28);
+            
+        }else{
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 31);
+            
+        }
+        
+        anyo = Pedir.rangoInt("Introduce el año de incorporación: ", 1921, 2021);
+        
+        fantig = dia + "/" + mes + "/" + anyo;
+    }
+    
+}
