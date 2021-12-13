@@ -37,7 +37,7 @@ public class Trabajador {
         return fantig;
     }
     
-    public void pedirDatos(){
+    public void pedirDatosT(){
     
         int dia, mes, anyo, dni;
         boolean fecha;
