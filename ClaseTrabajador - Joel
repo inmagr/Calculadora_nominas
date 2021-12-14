@@ -1,6 +1,7 @@
-package calculadora_nominas;
+package ClasesNominas;
 
-import pedir.*;
+import calcular.Pedir;
+import Sleer1.SLeer1;
 
 /**
  *
@@ -11,82 +12,79 @@ public class Trabajador {
     //Datos del trabajador
     private String nif;         //NIF
     private int numss;          //Numero de afiliación de la seguridad social
-    private String Gprof;       //Grupo Profesional
-    private String Gcoti;       //Grupo cotización
-    private String fantig;      //Fecha de antigüedad
+    private char gProf;         //Grupo Profesional
+    //private String gCoti;     //Grupo cotización, no es para la v1
+    //private String fAntig;    //Fecha de antigüedad, no es para la v1
+    private short nProf;        //Nivel profesional
+    private short aProf;        //Area profesional
 
-    public Trabajador(){}
+    //Método constructor
+    public Trabajador(String dni, int nss, char grup, short nivp, short areap){
     
+        nif = dni;
+        numss = nss;
+        gProf = grup;
+        nProf = nivp;
+        aProf = areap;
+    }
+    
+    //Métodos getter y setter
     public String getNif() {
         return nif;
     }
+    
+    public void setNif(String n){
+        nif = n;
+    }
 
-    public long getNumss() {
+    public int getNumss() {
         return numss;
     }
-
-    public String getGprof() {
-        return Gprof;
+    
+    public void setNumss(int n){
+        numss = n;
     }
 
-    public String getGcoti() {
-        return Gcoti;
-    }
-
-    public String getFantig() {
-        return fantig;
+    public char getgProf() {
+        return gProf;
     }
     
-    public void pedirDatosT(){
+    public void setgProf(char c){
+        gProf = c;
+    }
     
-        int dia, mes, anyo, dni;
-        boolean fecha;
-        char letranif;
-        
-        /*
-        * Pedir.rangoInt es un método que pide por teclado un número entre dos
-        * que se especifiquen al llamar al método. También es necesario pasarle
-        * un mensaje que imprimirá a la hora de pedir el dato.
-        */
-        
-        dni = Pedir.rangoInt("Introduce tu DNI (sin letra): ", 10000000, 99999999);
-        SLeer1.limpiar();
-        letranif = Pedir.soloLetra("Introduce la letra de tu DNI: ");
-        
-        nif = dni + " " + letranif;
-        
-        /*
-        * Pedir.posiDesdeNumInt es un método que pide por teclado un número int mayor
-        * que el número especificado al llamar el método. También es necesario pasarle
-        * un mensaje que imprimirá a la hora de pedir el dato.
-        */
-        
-        numss = Pedir.posiDesdeNumInt("Introduce tu Nº de afiliación de la SS (9 dígitos): ", 100000000);
-        SLeer1.limpiar();
-        Gprof = SLeer1.datoString("Introduce tu grupo profesional(Ej: 'Subalternos'): ");
-        Gcoti = SLeer1.datoString("Introduce tu grupo cotización: ");
-                
-        mes = Pedir.rangoInt("Introduce el mes de incorporación: ", 1, 12);
-        
-        
-            
-        if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
-            
-            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 30);
-            
-        }else if(mes == 2){
-            
-            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 28);
-            
-        }else{
-            
-            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 31);
-            
+    public short getnProf(){
+        return nProf;
+    }
+    
+    public void setnProf(short n){
+        nProf = n;
+    }
+    
+    public short getaProf(){
+        return aProf;
+    }
+    
+    public void setaProf(short a){
+        aProf = a;
+    }
+
+    /*No son para la versión1
+    
+        public String getgCoti() {
+            return gCoti;
         }
-        
-        anyo = Pedir.rangoInt("Introduce el año de incorporación: ", 1921, 2021);
-        
-        fantig = dia + "/" + mes + "/" + anyo;
-    }
+    
+        public void setgCoti(String g){
+            gCoti = g;
+        }
+
+        public String getfAntig() {
+            return fAntig;
+        }
+    
+        public void setfAntig(String f){
+            fAntig = f;
+        }*/
     
 }
