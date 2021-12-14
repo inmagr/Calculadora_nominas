@@ -1,0 +1,125 @@
+package calcular;
+
+import Sleer1.SLeer1;
+
+/**
+ *
+ * @author Joel Andreu 1CFS J
+ */
+
+public class Calculadora_nominas {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    //Método para pedir el DNI.
+    public static String pedirNif(){
+    
+        String nif = "";
+        int numero = 0;
+        char letra = 'x';
+        
+        numero = Pedir.rangoInt("Introduce tu DNI (sin letra): ", 1, 99999999);
+        SLeer1.limpiar();
+        letra = Pedir.soloLetra("Introduce la letra de tu DNI: ");
+        
+        nif = numero + " " + letra;
+        
+        return nif;
+    }
+    
+    //Método para pedir el número de la Seguridad social.
+    public static int pedirNumss(){
+    
+        int n;
+        
+        n = Pedir.rangoInt("Introduce tu Nº de afiliación de la SS (9 dígitos): ", 1, 999999999);
+        SLeer1.limpiar();
+        
+        return n;
+    }
+    
+    //Método para pedir el grupo profesional (A, B, C, D o E).
+    public static char pedirGprof(){
+    
+        char letra;
+        
+        do{
+            
+            letra = Pedir.soloLetra("Introduce letra de Grupo Profesional(A, B, C, D, E): ");
+            
+            if(letra < 65 || (letra > 69 && letra < 97) || letra > 101){
+            
+                System.err.println("Solo se admiten las letras (aA, bB, cC, dD, eE)");
+            
+            }
+            
+        }while(letra < 65 || (letra > 69 && letra < 97) || letra > 101);
+        
+        return letra;
+    }
+    
+    //Método para pedir el nivel profesional.
+    public static short pedirNprof(){
+    
+        short n;
+        
+        n = (short) Pedir.rangoInt("Introduce nivel profesional (1, 2, 3): ", 1, 3);
+        
+        return n;
+    }
+    
+    //Método para pedir el área profesional.
+    public static short pedirAprof(){
+    
+        short a;
+        
+        a = (short) Pedir.rangoInt("Introduce nivel profesional (1, 2, 3, 4): ", 1, 4);
+        
+        return a;
+    }
+    
+    //Método para pedir la fecha de antigüedad. NO ES PARA LA VERSIÓN 1
+    public static String pedirFantig(){
+    
+        int mes, dia, anyo;
+        String fAntig;
+        
+        mes = Pedir.rangoInt("Introduce el mes de incorporación: ", 1, 12);
+        
+        
+            
+        if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 30);
+            
+        }else if(mes == 2){
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 28);
+            
+        }else{
+            
+            dia = Pedir.rangoInt("Introduce el día de incorporación: ", 1, 31);
+            
+        }
+        
+        anyo = Pedir.rangoInt("Introduce el año de incorporación: ", 1921, 2021);
+        
+        fAntig = dia + "/" + mes + "/" + anyo;
+    
+        return fAntig;
+    }
+    
+    public static void main(String[] args) {
+        
+        System.out.println(pedirNif());
+        System.out.println(pedirNumss());
+        System.out.println(pedirGprof());
+        System.out.println(pedirNprof());
+        System.out.println(pedirAprof());
+        System.out.println(pedirFantig());
+        
+    }
+
+}
