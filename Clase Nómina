@@ -1,0 +1,72 @@
+package Clases_nominas;
+
+public class Nomina {
+
+        private double salario_base = 23099.31;             //Salario bruto anual
+        private double plus_convenio = 1541.06;             //Plus convenio anual
+        private double c_comunes = 4.70;                    //Porcentaje de contingencias comunes       %
+        private String liquidacion_inicio = "1/11/2021";    //Fecha de inicio de la liquidación
+        private String liquidacion_final = "30/11/2021";    //Fecha de fin de la liquidación
+        private int dia_inicial = 1;                        //Día de inicio de liquidación
+        private int dia_final = 30;                         //Día de fin de liquidación
+        private double desempleo = 1.55;                    //Porcentaje de desempleo, contrato fijo    %
+        private int dia = (dia_final + dia_inicial)+1;      //Días totales trabajados
+        private double fProf = 0.1;                         //Porcentaje de Formación profesional       %
+        private double irpf = 2;                            //Porcentaje del IRPF                       %
+        
+        //Método constructor
+        public Nomina(){
+        
+        }
+        
+        //Métodos getters y setters
+       public double getSalarioBase(){
+            return salario_base;
+        }
+        
+        public void setSalarioBase(double sb){
+            salario_base = sb;
+        }
+        
+        public double getDesempleo(){
+            return desempleo;
+        }
+        
+        public void setDesempleo(double des){
+            desempleo = des;
+        }
+        
+        public double getPlusConvenio(){
+            return plus_convenio;
+        }
+        
+        public void setPlusConvenio(double pc){
+            plus_convenio = pc;
+        }
+        
+        public double getComunes(){
+            return c_comunes;
+        }
+        
+        public void setComunes(double c){
+            c_comunes = c;
+        }
+        
+        public double getFProf(){
+            return fProf;
+        }
+        
+        public void setFProf(double FP){
+            fProf = FP;
+        }
+        
+        public double getIrpf(){
+            return irpf;
+        }
+        
+        public void setIrpf(double i){
+            irpf = i;
+        }
+        
+    }
+    

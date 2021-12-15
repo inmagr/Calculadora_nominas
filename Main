@@ -13,6 +13,42 @@ public class Calculadora_nominas {
      * @param args the command line arguments
      */
      
+      //MÉTODOS PARA EL CÁLCULO:
+    //Método para obtener total devengado
+    public static double calcularTotalDevengado(Nomina n) {
+        double salario_mensual = n.getSalarioBase() / 12;
+        double convenio_mensual = n.getPlusConvenio() / 12;
+        return salario_mensual + convenio_mensual;
+    }
+
+    //Método para obtener el total de aportaciones
+    public static double calcularTotalAportaciones(Nomina n) {
+        double c_comun = (n.getComunes() * calcularTotalDevengado(n)) / 100;
+        double desemp = (n.getDesempleo() * calcularTotalDevengado(n)) / 100;
+        double fp = (n.getFProf() * calcularTotalDevengado(n)) / 100;
+        return c_comun + desemp + fp;
+    }
+
+    //Método para obtener el total a deducir
+    public static double calcularTotalDeducir(Nomina n) {
+        double irpf_calculado = n.getIrpf() * calcularTotalDevengado(n) / 100;
+        return calcularTotalAportaciones(n) + irpf_calculado;
+    }
+
+    //Método para obtener total a percibir (salario neto)
+    public static double calcularTotalPercibir(Nomina n) {
+        return calcularTotalDevengado(n) - calcularTotalDeducir(n);
+    }
+
+    public static void main(String[] args) {
+
+        Nomina n;
+        n = new Nomina();
+
+        System.out.println(Pedir.redondear(calcularTotalPercibir(n), 2));
+    }
+
+     
      //Método para pedir el domicilio.
     public static String pideDomicilio(){
         
@@ -146,6 +182,9 @@ public class Calculadora_nominas {
     }
     
     public static void main(String[] args) {
+    
+        Nomina n;
+        n = new Nomina();
         
         System.out.println(pedirNif());
         System.out.println(pedirNumss());
