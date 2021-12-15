@@ -12,6 +12,40 @@ public class Calculadora_nominas {
     /**
      * @param args the command line arguments
      */
+     
+     //Método para pedir el domicilio.
+    public static String pideDomicilio(){
+        
+        String domicilio;
+        domicilio = SLeer1.datoString("Introduzca su domicilio: ");
+        
+        return domicilio;
+    }
+    
+    //Método para pedir el Cif de la empresa.
+    public static String pideCif(){
+    
+        String cif;
+        int numcif;
+        char letracif;
+        
+        letracif = Pedir.soloLetra("Introduzca la letra de su cif: ");
+        numcif = Pedir.rangoInt("Introduzca su numero cif: ", 10000000, 99999999);
+        
+        cif = letracif + "" + numcif;
+        
+        return cif;
+        
+    }
+    
+    //Método para pedir el código cuenta de cotización.
+    public static long pideCcc(){
+        
+        long ccc;
+        ccc = Pedir.rangoLong("Introduzca su Código cuenta de cotización: ", 10000000000l, 99999999999l);
+       
+        return 11100000000000l + ccc;
+    }
     
     //Método para pedir el DNI.
     public static String pedirNif(){
