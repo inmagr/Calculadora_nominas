@@ -182,6 +182,9 @@ public class Calculadora_nominas {
     }
     
     public static void main(String[] args) {
+    
+        Nomina n;
+        n = new Nomina();
         
         System.out.println(pedirNif());
         System.out.println(pedirNumss());
