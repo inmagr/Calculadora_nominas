@@ -39,15 +39,6 @@ public class Calculadora_nominas {
     public static double calcularTotalPercibir(Nomina n) {
         return calcularTotalDevengado(n) - calcularTotalDeducir(n);
     }
-
-    public static void main(String[] args) {
-
-        Nomina n;
-        n = new Nomina();
-
-        System.out.println(Pedir.redondear(calcularTotalPercibir(n), 2));
-    }
-
      
      //Método para pedir el domicilio.
     public static String pideDomicilio(){
