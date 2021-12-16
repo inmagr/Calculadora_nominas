@@ -1,57 +1,54 @@
-package Calcular;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ClasesNominas;
 
-import ClasesNominas.Empresa;
 import Sleer1.SLeer1;
-import Calcular.Pedir;
-        
 
 /**
  *
  * @author auron
  */
-public class PruebaEmpresa {
+public class Empresa {
 
-    //Método para pedir el domicilio.
-    public static String pideDomicilio(){
+    //Datos de la empresa
+    private String domicilio;        //Domicilio de la empresa
+    private String cif;              //Codigo de identificacion fiscal
+    private long ccc;                //Codigo cuenta de cotizacion
+
+    public Empresa(String domi, String cifem, long cccoti) {
         
-        String domicilio;
-        domicilio = SLeer1.datoString("Introduzca su domicilio: ");
+        domicilio = domi;
+        cif = cifem;
+        ccc = cccoti;
         
+    }
+
+    public void setDomicilio(String d) {
+        domicilio = d;
+    }
+
+    public String getDomicilio() {
+
         return domicilio;
     }
-    
-    //Método para pedir el Cif de la empresa.
-    public static String pideCif(){
-    
-        String cif;
-        int numcif;
-        char letracif;
-        
-        letracif = Pedir.soloLetra("Introduzca la letra de su cif: ");
-        numcif = Pedir.rangoInt("Introduzca su numero cif: ", 10000000, 99999999);
-        
-        cif = letracif + "" + numcif;
-        
+
+    public void setCif(String ci) {
+        cif = ci;
+    }
+
+    public String getCif() {
         return cif;
-        
     }
-    
-    //Método para pedir el código cuenta de cotización.
-    public static long pideCcc(){
-        
-        long ccc;
-        ccc = Pedir.rangoLong("Introduzca su Código cuenta de cotización: ", 10000000000l, 99999999999l);
-       
-        return 11100000000000l + ccc;
+
+    public void setCcc(long c) {
+        ccc = c;
     }
-    
-    public static void main(String[] args) {
-        
-        pideDomicilio();
-        
-        System.out.println(pideCif());
-        
-        System.out.println(pideCcc());
+
+    public long getCcc() {
+        return ccc;
+
     }
-    
+
 }
