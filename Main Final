@@ -1,0 +1,335 @@
+package calcular;
+
+import Sleer1.SLeer1;
+import ClasesNominas.*;
+
+public class Calculadora_nominas {
+
+    /**
+    *
+    * @author Joel Andreu 1CFS J
+    */
+     
+   //MÉTODOS PARA EL CÁLCULO:
+    //Método para obtener total devengado
+    public static double calcularTotalDevengado(Nomina n) {
+        double salario_mensual = n.getSalarioBase() / 12;
+        double convenio_mensual = n.getPlusConvenio() / 12;
+        return salario_mensual + convenio_mensual;
+    }
+    
+
+    //Método para obtener el total de aportaciones
+    public static double calcularTotalAportaciones(Nomina n) {
+        double c_comun = (n.getComunes() * calcularTotalDevengado(n)) / 100;
+        double desemp = (n.getDesempleo() * calcularTotalDevengado(n)) / 100;
+        double fp = (n.getFProf() * calcularTotalDevengado(n)) / 100;
+        return c_comun + desemp + fp;
+    }
+
+    //Método para obtener el total a deducir
+    public static double calcularTotalDeducir(Nomina n) {
+        double irpf_calculado = n.getIrpf() * calcularTotalDevengado(n) / 100;
+        return calcularTotalAportaciones(n) + irpf_calculado;
+    }
+
+    //Método para obtener total a percibir (salario neto)
+    public static double calcularTotalPercibir(Nomina n) {
+        return calcularTotalDevengado(n) - calcularTotalDeducir(n);
+    }
+    
+    //Método para calcular las contigencias comunes del trabajador
+    public static double calcularComunesTrabajador(Nomina n) {
+        double c_comun = (n.getComunes() * calcularTotalDevengado(n)) / 100;
+        return c_comun;
+    }
+    
+    
+    //Método para calcular desempleo del trabajador
+    public static double calcularDesTrabajador(Nomina n) {
+        double desemp = (n.getDesempleo() * calcularTotalDevengado(n)) / 100;
+        return desemp;
+    }
+    
+    //Método para calcular formación profesional del trabajador
+    public static double calcularFPTrabajador(Nomina n) {
+        double fp = (n.getFProf() * calcularTotalDevengado(n)) / 100;
+        return fp;
+    }
+    
+    //Método para calcular las contingencias comunes de la empresa
+    public static double calcularCCOmunesEmpresa(Nomina n){
+    
+        double comunes = (n.getC_com_emp() * calcularTotalDevengado(n)) / 100;
+    
+        return comunes;
+    }
+    
+    //Método para calcular IRPF del trabajador
+    public static double calcularIRPFTrabajador(Nomina n) {
+        double i = (n.getIrpf() * calcularTotalDevengado(n)) / 100;
+        return i;
+    }
+    
+    public static double calcularAtepEmpresa(Nomina n){
+    
+        double atep = (n.getAt_ep() * calcularTotalDevengado(n)) / 100;
+    
+        return atep;
+    }
+    
+    public static double calcularDesemEmpresa(Nomina n){
+    
+        double desem = (n.getDesem_emp() * calcularTotalDevengado(n)) / 100;
+        
+        return desem;
+    }
+    
+    public static double calcularFormaPEmpresa(Nomina n){
+    
+        double fp = (n.getFp_emp() * calcularTotalDevengado(n)) / 100;
+    
+        return fp;
+    }
+    
+    public static double calcularFogasaEmpresa(Nomina n){
+    
+        double fogasa = (n.getFogasa() * calcularTotalDevengado(n)) / 100;
+        
+        return fogasa;
+    }
+
+    //Método para pedir el domicilio.
+    public static String pideDomicilio() {
+
+        String domicilio;
+        domicilio = SLeer1.datoString("\tIntroduzca su domicilio: ");
+
+        return domicilio;
+    }
+
+    //Método para pedir el Cif de la empresa.
+    public static String pideCif() {
+
+        String cif;
+        int numcif;
+        char letracif;
+
+        letracif = Pedir.soloLetra("\tIntroduzca la letra de su cif: ");
+        numcif = Pedir.rangoInt("\tIntroduzca su numero cif (8 dígitos): ", 10000000, 99999999);
+
+        cif = letracif + "" + numcif;
+
+        return cif;
+
+    }
+
+    //Método para pedir el código cuenta de cotización.
+    public static long pideCcc() {
+
+        long ccc;
+        ccc = Pedir.rangoLong("\tIntroduzca su Código cuenta de cotización (11 dígitos): ", 10000000000l, 99999999999l);
+
+        return 11100000000000l + ccc;
+    }
+
+    //Método para pedir el DNI.
+    public static String pedirNif() {
+
+        String nif = "";
+        int numero = 0;
+        char letra = 'x';
+
+        numero = Pedir.rangoInt("\tIntroduce tu DNI (sin letra): ", 1, 99999999);
+        SLeer1.limpiar();
+        letra = Pedir.soloLetra("\tIntroduce la letra de tu DNI: ");
+
+        nif = numero + " " + letra;
+
+        return nif;
+    }
+
+    //Método para pedir el número de la Seguridad social.
+    public static int pedirNumss() {
+
+        int n;
+
+        n = Pedir.rangoInt("\tIntroduce tu Nº de afiliación de la SS (9 dígitos): ", 1, 999999999);
+        SLeer1.limpiar();
+
+        return n;
+    }
+
+    //Método para pedir el grupo profesional (A, B, C, D o E).
+    public static char pedirGprof() {
+
+        char letra;
+
+        do {
+
+            letra = Pedir.soloLetra("\tIntroduce letra de Grupo Profesional(A, B, C, D, E): ");
+
+            if (letra < 65 || (letra > 69 && letra < 97) || letra > 101) {
+
+                System.err.println("\tSolo se admiten las letras (aA, bB, cC, dD, eE)");
+
+            }
+
+        } while (letra < 65 || (letra > 69 && letra < 97) || letra > 101);
+
+        return letra;
+    }
+
+    //Método para pedir el nivel profesional.
+    public static short pedirNprof() {
+
+        short n;
+
+        n = (short) Pedir.rangoInt("\tIntroduce nivel profesional (1, 2, 3): ", 1, 3);
+
+        return n;
+    }
+
+    //Método para pedir el área profesional.
+    public static short pedirAprof() {
+
+        short a;
+
+        a = (short) Pedir.rangoInt("\tIntroduce area profesional (1, 2, 3, 4): ", 1, 4);
+
+        return a;
+    }
+
+    //Método para pedir la fecha de antigüedad. NO ES PARA LA VERSIÓN 1
+    public static String pedirFantig() {
+
+        int mes, dia, anyo;
+        String fAntig;
+
+        mes = Pedir.rangoInt("\tIntroduce el mes de incorporación: ", 1, 12);
+
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+
+            dia = Pedir.rangoInt("\tIntroduce el día de incorporación: ", 1, 30);
+
+        } else if (mes == 2) {
+
+            dia = Pedir.rangoInt("\tIntroduce el día de incorporación: ", 1, 28);
+
+        } else {
+
+            dia = Pedir.rangoInt("\tIntroduce el día de incorporación: ", 1, 31);
+
+        }
+
+        anyo = Pedir.rangoInt("\tIntroduce el año de incorporación: ", 1921, 2021);
+
+        fAntig = dia + "/" + mes + "/" + anyo;
+
+        return fAntig;
+    }
+    
+    public static void main(String[] args) {
+        
+        String domicilio = "";
+        String cif = "";
+        long ccc = 0;
+        
+        String nif = "";
+        int numss = 0;
+        char gprof = 'x';
+        short nprof = 0;
+        short aprof = 0;
+        
+        
+        Nomina n= new Nomina();
+        
+        double tdevengado = Pedir.redondear(calcularTotalDevengado(n), 2);
+        double taportaciones = Pedir.redondear(calcularTotalAportaciones(n), 2);
+        
+        System.out.println("A continuación debe introducir los datos de la EMPRESA: ");
+        domicilio = pideDomicilio();
+        cif = pideCif();
+        ccc = pideCcc();
+        
+        Empresa e = new Empresa(domicilio, cif, ccc);
+        
+        System.out.println("\n\nA continuación debe introducir los datos del TRABAJADOR: ");
+        nif = pedirNif();
+        numss = pedirNumss();
+        gprof = pedirGprof();
+        nprof = pedirNprof();
+        aprof = pedirAprof();
+        
+        Trabajador t = new Trabajador(nif, numss, gprof, nprof, aprof);
+        
+        
+        
+        
+        //System.out.println("\n\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("\n#############################################################################################################################################################################");
+        System.out.println("\nNÓMINA DEL TRABAJADOR/A: Inmaculada Garrido.");
+        
+        System.out.println("\nEMPRESA");
+        System.out.println("\tDomicilio: "+ e.getDomicilio());
+        System.out.println("\tC.I.F.: " + e.getCif());
+        System.out.println("\tC.C.C.: " + e.getCcc());
+        
+        System.out.println("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        
+        System.out.println("\nTRABAJADOR");
+        System.out.println("\tNIF: " + t.getNif());
+        System.out.println("\tNAF: " + t.getNumss());
+        System.out.println("\tÁrea profesional: " + t.getaProf());
+        System.out.println("\tGrupo profiesional: " + t.getgProf());
+        System.out.println("\tNivel profiesional: " + t.getnProf());
+       
+        //System.out.println("\n*****************************************************************************************************************************************************************************");
+        System.out.println("\n\n===========================================================================================================================================================================");
+        System.out.println("\nDEVENGOS");
+        System.out.println("\t1.PERCEPCIONES SALARIALES: ");
+        System.out.println("\n\t\t SALARIO BASE: " + n.getSalarioBase());
+        System.out.println("\t\t P.P.GRATIFICACIONES: " + n.getPlusConvenio()+ "\n");
+        
+        System.out.println("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        
+        System.out.println("\nDEDUCCIONES");
+        System.out.println("\t1.Aportaciones del trabajador a las cotizaciones a la SS y conceptos de recaudación conjunta\n");
+        System.out.println("\t\t CONTINGENCIAS COMUNES:   " + n.getComunes()+"%\t\t" + Pedir.redondear(calcularComunesTrabajador(n), 2));
+        System.out.println("\t\t DESEMPLEO:               " + n.getDesempleo()+"%\t\t" + Pedir.redondear(calcularDesTrabajador(n), 2));
+        System.out.println("\t\t FORMACIÓN PROFESIONAL:   " + n.getFProf()+"%\t\t" + Pedir.redondear(calcularFPTrabajador(n), 2));
+        
+        System.out.println("\n\n\tA.TOTAL DEVENGADO:           " + tdevengado);
+        
+        System.out.println("\n\t1.TOTAL APORTACIONES:        " + taportaciones);
+        System.out.println("\t2. I.R.P.F.:                   " + n.getIrpf() +"%\t" + Pedir.redondear(calcularIRPFTrabajador(n), 2));
+        
+        System.out.println("\n\tB.TOTAL A DEDUCIR:           " + Pedir.redondear(calcularTotalDeducir(n), 2));
+        System.out.println("\n\tLÍQUIDO TOTAL A PERCIBIR:    "+ Pedir.redondear(calcularTotalPercibir(n), 2));
+        
+        //System.out.println("\n*****************************************************************************************************************************************************************************");
+        System.out.println("\n\n===========================================================================================================================================================================");
+        System.out.println("\nDeterminación de bases de cotización a la SS y "
+                + "conceptos de recaudación conjunta y de la base sujeta a "
+                + "retención del IRPF y aportación de la empresa");
+        System.out.println("\n\t1. Contingencias comunes ");
+        System.out.println("\t\t Remuneración mensual: \t\t" + Pedir.redondear((n.getSalarioBase()/12), 2));
+        System.out.println("\t\t Pagas extraordinarias: \t" + Pedir.redondear((n.getPlusConvenio()/12), 2));
+        System.out.println("\t\t Base de cotización a la SS: \t" + tdevengado
+                + "\t\t" + n.getC_com_emp()+ "%\t\t" + Pedir.redondear(calcularCCOmunesEmpresa(n),2));
+        
+        
+        System.out.println("\n\t2. Contingencias profesionales y conceptos de recaudación conjunta ");
+        System.out.println("\n\t\tBase de contingencias profesionales   " + tdevengado + "\n");
+        System.out.println("\t\t\tAT y EP                   " + n.getAt_ep() + "%\t\t" + Pedir.redondear(calcularAtepEmpresa(n),2));
+        System.out.println("\t\t\tDesempleo                 " + n.getDesem_emp() + "%\t\t" + Pedir.redondear(calcularDesemEmpresa(n),2));
+        System.out.println("\t\t\tFormación Profesional     " + n.getFp_emp() + "%\t\t" + Pedir.redondear(calcularFormaPEmpresa(n),2));
+        System.out.println("\t\t\tFondo Garantía Salarial   " + n.getFogasa() + "%\t\t" + Pedir.redondear(calcularFogasaEmpresa(n),2));
+        
+        System.out.println("\n\t4. Base sujeta a retención del IRPF     " + tdevengado);
+        
+        //System.out.println("\n\n---------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("\n#############################################################################################################################################################################");
+    }
+
+}
