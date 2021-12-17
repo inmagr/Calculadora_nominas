@@ -2,71 +2,118 @@ package Clases_nominas;
 
 public class Nomina {
 
-        private double salario_base = 23099.31;             //Salario bruto anual
-        private double plus_convenio = 1541.06;             //Plus convenio anual
-        private double c_comunes = 4.70;                    //Porcentaje de contingencias comunes       %
-        private String liquidacion_inicio = "1/11/2021";    //Fecha de inicio de la liquidación
-        private String liquidacion_final = "30/11/2021";    //Fecha de fin de la liquidación
-        private int dia_inicial = 1;                        //Día de inicio de liquidación
-        private int dia_final = 30;                         //Día de fin de liquidación
-        private double desempleo = 1.55;                    //Porcentaje de desempleo, contrato fijo    %
-        private int dia = (dia_final + dia_inicial)+1;      //Días totales trabajados
-        private double fProf = 0.1;                         //Porcentaje de Formación profesional       %
-        private double irpf = 2;                            //Porcentaje del IRPF                       %
-        
-        //Método constructor
-        public Nomina(){
-        
-        }
-        
-        //Métodos getters y setters
-       public double getSalarioBase(){
-            return salario_base;
-        }
-        
-        public void setSalarioBase(double sb){
-            salario_base = sb;
-        }
-        
-        public double getDesempleo(){
-            return desempleo;
-        }
-        
-        public void setDesempleo(double des){
-            desempleo = des;
-        }
-        
-        public double getPlusConvenio(){
-            return plus_convenio;
-        }
-        
-        public void setPlusConvenio(double pc){
-            plus_convenio = pc;
-        }
-        
-        public double getComunes(){
-            return c_comunes;
-        }
-        
-        public void setComunes(double c){
-            c_comunes = c;
-        }
-        
-        public double getFProf(){
-            return fProf;
-        }
-        
-        public void setFProf(double FP){
-            fProf = FP;
-        }
-        
-        public double getIrpf(){
-            return irpf;
-        }
-        
-        public void setIrpf(double i){
-            irpf = i;
-        }
+    private double salario_base = 23099.31;             //Salario bruto anual
+    private double plus_convenio = 1541.06;             //Plus convenio anual
+    private String liquidacion_inicio = "1/11/2021";    //Fecha de inicio de la liquidación
+    private String liquidacion_final = "30/11/2021";    //Fecha de fin de la liquidación
+    private int dia_inicial = 1;                        //Día de inicio de liquidación
+    private int dia_final = 30;                         //Día de fin de liquidación
+    private int dia = (dia_final + dia_inicial) + 1;      //Días totales trabajados
+    private double fProf = 0.1;                         //Porcentaje de Formación profesional       %
+    private double irpf = 2;                            //Porcentaje del IRPF                       %
+    private double c_comunes = 4.70;                    //Porcentaje de contingencias comunes       %
+    private double desempleo = 1.55;                    //Porcentaje de desempleo, contrato fijo    %
+
+    //Atributos sobre la empresa
+    private double c_com_emp = 23.6;                    //Porcentaje de contingencias comunes de la empresa
+    private double desem_emp = 5.5;                     //Porcentaje de desempleao de la empresa
+    private double fp_emp = 0.6;                        //Porcentaje de formación profesional de la empresa
+    private double fogasa = 0.2;                        //Porcentaje de fogasa de la empresa
+    private double at_ep = 1.5;                         //Porcentaje de accidentes/enfermedad profesional de la empresa
+
+    //Método constructor
+    public Nomina() {
+
+    }
+    
+    public double getC_com_emp() {
+        return c_com_emp;
+    }
+
+    public void setC_com_emp(double c_com_emp) {
+        this.c_com_emp = c_com_emp;
+    }
+
+    public double getDesem_emp() {
+        return desem_emp;
+    }
+
+    public void setDesem_emp(double desem_emp) {
+        this.desem_emp = desem_emp;
+    }
+
+    public double getFp_emp() {
+        return fp_emp;
+    }
+
+    public void setFp_emp(double fp_emp) {
+        this.fp_emp = fp_emp;
+    }
+
+    public double getFogasa() {
+        return fogasa;
+    }
+
+    public void setFogasa(double fogasa) {
+        this.fogasa = fogasa;
+    }
+
+    public double getAt_ep() {
+        return at_ep;
+    }
+
+    public void setAt_ep(double at_ep) {
+        this.at_ep = at_ep;
+    }
+
+    //Métodos getters y setters
+    public double getSalarioBase() {
+        return salario_base;
+    }
+
+    public void setSalarioBase(double sb) {
+        salario_base = sb;
+    }
+
+    public double getDesempleo() {
+        return desempleo;
+    }
+
+    public void setDesempleo(double des) {
+        desempleo = des;
+    }
+
+    public double getPlusConvenio() {
+        return plus_convenio;
+    }
+
+    public void setPlusConvenio(double pc) {
+        plus_convenio = pc;
+    }
+
+    public double getComunes() {
+        return c_comunes;
+    }
+
+    public void setComunes(double c) {
+        c_comunes = c;
+    }
+
+    public double getFProf() {
+        return fProf;
+    }
+
+    public void setFProf(double FP) {
+        fProf = FP;
+    }
+
+    public double getIrpf() {
+        return irpf;
+    }
+
+    public void setIrpf(double i) {
+        irpf = i;
+    }
         
     }
     
